@@ -46,12 +46,12 @@ public class CardOrderTest {
     private WebDriver driver;
 
     @BeforeAll
-    static void setUpAll() {
+    public static void setUpAll() {
         WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
@@ -60,13 +60,13 @@ public class CardOrderTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         driver.quit();
         driver = null;
     }
 
     @Test   //Задача №1
-    void shouldSuccessfulCardOrder() {
+    public void shouldSuccessfulCardOrder() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Томас Андерсон");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
@@ -78,7 +78,7 @@ public class CardOrderTest {
     }
 
     @Test   //Задача №2 - пустая форма (добавленный тест)
-    void shouldEmptyForm() {
+    public void shouldEmptyForm() {
         driver.get("http://localhost:9999");
         driver.findElement(By.className("button")).click();
 
@@ -87,9 +87,9 @@ public class CardOrderTest {
     }
 
     @Test   //Задача №2 - пустое поле имени (добавленный тест)
-    void shouldEmptyNameField() {
+    public void shouldEmptyNameField() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79013345677");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button")).click();
 
@@ -98,10 +98,10 @@ public class CardOrderTest {
     }
 
     @Test   //Задача №2 - валидация поля имени
-    void shouldNameFieldValidation() {
+    public void shouldNameFieldValidation() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Thomas Anderson");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Jan Gus");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79014345676");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button")).click();
 
@@ -110,9 +110,9 @@ public class CardOrderTest {
     }
 
     @Test   //Задача №2 - пустое поле телефона (добавленный тест)
-    void shouldEmptyPhoneField() {
+    public void shouldEmptyPhoneField() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Томас Андерсон");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Лада Славянина");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button")).click();
 
@@ -121,9 +121,9 @@ public class CardOrderTest {
     }
 
     @Test   //Задача №2 - валидация поля телефон
-    void shouldPhoneFieldValidation() {
+    public void shouldPhoneFieldValidation() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Томас Андерсон");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Эллада Эллинкина");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+7901234567");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button")).click();
@@ -133,10 +133,10 @@ public class CardOrderTest {
     }
 
     @Test   //Задача №2 - не отмеченный чек бокс
-    void shouldInactiveCheckBox() {
+    public void shouldInactiveCheckBox() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Томас Андерсон");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79012345678");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Зульфия Персова");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79015345675");
         driver.findElement(By.className("button")).click();
 
         String text = driver.findElement(By.cssSelector("[data-test-id=agreement].input_invalid .checkbox__text")).getText();
