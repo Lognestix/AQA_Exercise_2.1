@@ -88,7 +88,7 @@ public class CardOrderTest {
         assertEquals("Поле обязательно для заполнения", text.trim());
     }
 
-    @Test   //Задача №2 - валидация поля телефон
+    @Test   //Задача №2 - валидация поля телефона
     public void shouldPhoneFieldValidation() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Эллада Эллинкина");
